@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Swagger store inventory get endpoint check" skipped="0" tests="1" time="0.08" timestamp="2019-10-27 09:58:16"><testcase name="Check inventory in the SwaggerPetStore using Get call"><error type="java.lang.NullPointerException"/><system-err>null&#13;
+HWJ.steps.serenity.SwaggerRestSteps.isStatusCodeOk(SwaggerRestSteps.java:16)&#13;
+HWJ.difinition.SwaggerDifinition.ICheckInventoryStatusCode(SwaggerDifinition.java:16)&#13;
+</system-err></testcase></testsuite>

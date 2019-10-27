@@ -1,0 +1,10 @@
+HWJ\AcceptanceTestSuite.class
+HWJ\steps\serenity\SwaggerRestSteps.class
+HWJ\pages\dto\OrderDTO.class
+HWJ\steps\serenity\EndUserSteps.class
+HWJ\pages\dto\OrderDTO$OrderDTOBuilder.class
+HWJ\difinition\Definition.class
+HWJ\difinition\SwaggerDifinition.class
+utils\EnvironmentPropertyLoader.class
+HWJ\pages\DictionaryPage.class
+HWJ\pages\SwaggerStore.class

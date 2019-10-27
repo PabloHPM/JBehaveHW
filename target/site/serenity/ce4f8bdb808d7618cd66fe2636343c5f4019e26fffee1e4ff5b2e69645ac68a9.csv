@@ -1,0 +1,2 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Swagger store inventory get endpoint check","Check inventory in the SwaggerPetStore using Get call","ERROR","2019-10-27T21:58:16.053+02:00[Europe/Helsinki]","0.0","0.08"

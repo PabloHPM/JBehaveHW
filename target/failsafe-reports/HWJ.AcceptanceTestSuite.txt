@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: HWJ.AcceptanceTestSuite
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 1, Skipped: 3, Time elapsed: 14.292 s <<< FAILURE! - in HWJ.AcceptanceTestSuite
+Given I check Inventory status code(HWJ.difinition.SwaggerDifinition)  Time elapsed: 0.057 s  <<< ERROR!
+java.lang.NullPointerException
+	at HWJ.difinition.SwaggerDifinition.ICheckInventoryStatusCode(SwaggerDifinition.java:16)
+

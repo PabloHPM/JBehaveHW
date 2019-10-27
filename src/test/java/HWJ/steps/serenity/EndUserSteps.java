@@ -3,6 +3,7 @@ package HWJ.steps.serenity;
 import HWJ.pages.DictionaryPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
+import utils.EnvironmentPropertyLoader;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -36,5 +37,10 @@ public class EndUserSteps {
     public void looks_for(String term) {
         enters(term);
         starts_search();
+    }
+
+    @Step
+    public void propertyTest(){
+        System.out.println(EnvironmentPropertyLoader.getProperty("name"));
     }
 }

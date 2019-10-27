@@ -21,8 +21,6 @@ public class DictionaryPage extends PageObject {
     @FindBy(name="go")
     private WebElementFacade lookupButton;
 
-//    @FindBy(tagName = "ol")
-
     public void enter_keywords(String keyword) {
         searchTerms.type(keyword);
     }

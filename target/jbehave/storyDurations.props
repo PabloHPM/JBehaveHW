@@ -1,0 +1,7 @@
+#org.jbehave.core.embedder.StoryManager
+#Sun Oct 27 21:58:16 EET 2019
+threads=1
+total=9000
+stories/LookupADefinition.story=9000
+stories/swaggerStoreInventoryGetEndpointCheck.story=0
+threadAverage=9000
