@@ -38,7 +38,7 @@ public class SwaggerStore {
 
     public Response getAnOrder(int id) {
         return spec()
-                .pathParam("orderId",id)
+                .pathParam("orderId", id)
                 .when()
                 .get(ORDER_ID)
                 .then()
