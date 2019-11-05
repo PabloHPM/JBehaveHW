@@ -1,32 +1,30 @@
 package utils;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 import java.util.Properties;
 
-import static java.util.Optional.ofNullable;
-
+@Log4j2
 public class EnvironmentPropertyLoader {
 
     private static Properties properties = new Properties();
 
-    private EnvironmentPropertyLoader() {
-    }
-
     static {
-        String pathToPropertyFile = String.format("configurations/%s.properties", System.getProperty("env"));
-        final InputStream inputStream = ofNullable(EnvironmentPropertyLoader.class.getClassLoader().getResourceAsStream(pathToPropertyFile))
-                .orElseThrow(
-                        () -> new IllegalStateException("Unable to load properties - file might not be specified: ".concat(pathToPropertyFile)));
+        String propertyFilePath = String.format("configurations/%s.properties", System.getProperty("env"));
+        final InputStream inputStream =
+            Optional.ofNullable(EnvironmentPropertyLoader.class.getClassLoader().getResourceAsStream(propertyFilePath))
+                    .orElseThrow(() -> new IllegalStateException(
+                        String.format("Properties not be loaded due to file not be specified: %s", propertyFilePath)));
         try {
             properties.load(inputStream);
             inputStream.close();
         } catch (IOException e) {
-
-            throw new IllegalStateException("Unable to load properties from resource: ".concat(pathToPropertyFile));
-
+            throw new IllegalStateException(
+                String.format("Properties not be loaded due to file not be specified: %s", propertyFilePath));
         }
-
     }
 
     public static synchronized String getProperty(String propertyName) {

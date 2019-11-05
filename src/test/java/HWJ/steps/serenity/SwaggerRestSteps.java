@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class SwaggerRestSteps {
 
     private SwaggerStore swaggerStore = new SwaggerStore();
+
     private OrderDTO orderDTO;
 
     @Step
@@ -56,7 +57,7 @@ public class SwaggerRestSteps {
     @Step
     public void isBodyContainsFieldWithValue(String field, int value) {
         assertEquals(field, swaggerStore.getInventory().getBody().jsonPath().getString((field)));
-//        assertEquals(value, swaggerStore.getInventory().getBody().jsonPath().getInt(value));
+        assertEquals(value, swaggerStore.getInventory().getBody().jsonPath().getInt(String.valueOf(value)));
     }
 
     @Step
