@@ -43,7 +43,6 @@ public class OrderDTO {
         return new Random().nextInt(100);
     }
 
-
     public static class OrderDTOBuilder {
         OrderDTO orderDTO = new OrderDTO();
 

@@ -1,12 +1,14 @@
 package HWJ.difinition;
 
-import HWJ.steps.serenity.SwaggerRestSteps;
+import HWJ.steps.SwaggerRestSteps;
+import lombok.extern.log4j.Log4j2;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+@Log4j2
 public class SwaggerDefinition {
 
     @Steps
@@ -28,7 +30,8 @@ public class SwaggerDefinition {
                 swaggerRestSteps.isDeleteOrderStatusCodeOk();
                 break;
             default:
-
+                log.fatal(String.format("Method '%s' not be found", method));
+                new IllegalStateException(String.format("Method '%s' not be found", method));
                 break;
         }
     }
@@ -54,8 +57,7 @@ public class SwaggerDefinition {
     }
 
     @AfterScenario
-    public void cleanUp(){
+    public void cleanUp() {
         swaggerRestSteps.cleanUp();
     }
-
 }

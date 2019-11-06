@@ -1,15 +1,17 @@
-package HWJ.steps.serenity;
+package HWJ.steps;
 
 import HWJ.pages.SwaggerStore;
 import HWJ.pages.dto.OrderDTO;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import lombok.extern.log4j.Log4j2;
 import net.thucydides.core.annotations.Step;
 
 import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.Assert.assertEquals;
 
+@Log4j2
 public class SwaggerRestSteps {
 
     private SwaggerStore swaggerStore = new SwaggerStore();
@@ -18,37 +20,41 @@ public class SwaggerRestSteps {
 
     @Step
     public void isGetInventoryStatusCodeOk() {
-        assertEquals(getStatusCode(swaggerStore.getInventory()), SC_OK);
+        statusCodeCheck(getStatusCode(swaggerStore.getInventory()));
     }
 
     @Step
     public void isGetOrderStatusCodeOk() {
-        assertEquals(getStatusCode(swaggerStore.getAnOrder(orderDTO.getId())), SC_OK);
+        statusCodeCheck(getStatusCode(swaggerStore.getAnOrder(orderDTO.getId())));
     }
 
     @Step
     public void isPostOrderStatusCodeOk() {
-        assertEquals(getStatusCode(swaggerStore.placeAnOrder(orderDTO)), SC_OK);
+        statusCodeCheck(getStatusCode(swaggerStore.placeAnOrder(orderDTO)));
     }
 
     @Step
     public void isDeleteOrderStatusCodeOk() {
-        assertEquals(getStatusCode(swaggerStore.deleteAnOrder(orderDTO.getId())), SC_OK);
+        statusCodeCheck(getStatusCode(swaggerStore.deleteAnOrder(orderDTO.getId())));
     }
 
     @Step
     public void isHeadersCorrect(String method) {
         switch (method.toLowerCase()) {
             case "get inventory":
+                log.info(String.format("Headers check for - %s", method));
                 headersCheck(swaggerStore.getInventory());
                 break;
             case "post order":
+                log.info(String.format("Headers check for - %s", method));
                 headersCheck(swaggerStore.placeAnOrder(orderDTO));
                 break;
             case "get order":
+                log.info(String.format("Headers check for - %s", method));
                 headersCheck(swaggerStore.getAnOrder(orderDTO.getId()));
                 break;
             case "delete order":
+                log.info(String.format("Headers check for - %s", method));
                 headersCheck(swaggerStore.deleteAnOrder(orderDTO.getId()));
                 break;
         }
@@ -56,6 +62,7 @@ public class SwaggerRestSteps {
 
     @Step
     public void isBodyContainsFieldWithValue(String field, int value) {
+        log.info(String.format("Check that Inventory contains field '%s' with value '%d'", field, value));
         assertEquals(field, swaggerStore.getInventory().getBody().jsonPath().getString((field)));
         assertEquals(value, swaggerStore.getInventory().getBody().jsonPath().getInt(String.valueOf(value)));
     }
@@ -88,6 +95,11 @@ public class SwaggerRestSteps {
         swaggerStore.deleteAnOrder(orderDTO.getId());
     }
 
+    private void statusCodeCheck(int statusCode) {
+        log.info(String.format("Status code of the call: %d", statusCode));
+        assertEquals(SC_OK, statusCode);
+    }
+
     private void headersCheck(Response response) {
         Headers headers = response.headers();
         assertEquals("*", headers.get("Access-Control-Allow-Origin").getValue());
@@ -107,6 +119,9 @@ public class SwaggerRestSteps {
                 .withComplete()
                 .withStatus()
                 .build();
+
+        log.info(String.format("Order was created with such fields: %s", orderDTO.toString()));
+
         return orderDTO;
     }
 }
