@@ -48,6 +48,7 @@ public class SwaggerDefinition {
 
     @Given("I place an order to swagger store with '$id', '$quantity'")
     public void iPlaceAnOrderToSwaggerStore(int id, int quantity) {
+        log.info(String.format("Pass parameters id = '%d' quantity = '%d'", id, quantity));
         swaggerRestSteps.placeAnOrderToStore(id, quantity);
     }
 
