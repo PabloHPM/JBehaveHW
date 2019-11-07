@@ -27,7 +27,7 @@ Then I check status code for 'GET Order'
 !-- Given I place an order to swagger store with '<id>', '<quantity>'
 !-- When I check call headers for 'GET Order'
 !-- Then I check status code for 'GET Order'
-
+!--
 !-- Examples:
 !-- |<id>|<quantity>|
 !-- |-11|2|

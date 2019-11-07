@@ -14,10 +14,12 @@ public class EnvironmentPropertyLoader {
 
     static {
         String propertyFilePath = String.format("configurations/%s.properties", System.getProperty("env"));
+        log.info(propertyFilePath);
         final InputStream inputStream =
             Optional.ofNullable(EnvironmentPropertyLoader.class.getClassLoader().getResourceAsStream(propertyFilePath))
                     .orElseThrow(() -> new IllegalStateException(
                         String.format("Properties not be loaded due to file not be specified: %s", propertyFilePath)));
+        log.info(inputStream.toString());
         try {
             properties.load(inputStream);
             inputStream.close();
@@ -28,6 +30,6 @@ public class EnvironmentPropertyLoader {
     }
 
     public static synchronized String getProperty(String propertyName) {
-        return System.getProperty(propertyName, properties.getProperty(propertyName));
+        return properties.getProperty(propertyName);
     }
 }
